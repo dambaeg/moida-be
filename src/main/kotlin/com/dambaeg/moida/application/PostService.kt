@@ -1,10 +1,10 @@
 package com.dambaeg.moida.application
 
-import com.dambaeg.moida.application.view.PostView
 import com.dambaeg.moida.application.view.toPostView
 import com.dambaeg.moida.application.view.toPostsView
-import com.dambaeg.moida.domain.content.Feed
 import com.dambaeg.moida.domain.content.PostRepository
+import com.dambaeg.moida.domain.member.Member
+import com.dambaeg.moida.infrastructure.SyndFeed
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 import javax.transaction.Transactional
@@ -12,14 +12,11 @@ import javax.transaction.Transactional
 @Service
 @Transactional
 class PostService @Autowired constructor(
-        private val postRepository: PostRepository,
-        private val memberService: MemberService
+        private val postRepository: PostRepository
 ) {
-    fun addPost(memberId: String): PostView {
-        val persistMember = memberService.findById(memberId)
-        val latestPost = persistMember.addPost(Feed.get(persistMember))
-        return toPostView(latestPost)
-    }
+    fun retrieveFeed(member: Member) = SyndFeed.get(member)
+
+    fun retrieve(member: Member) = retrieveFeed(member).toPost(member)
 
     fun findPosts() = toPostsView(postRepository.findAll())
 

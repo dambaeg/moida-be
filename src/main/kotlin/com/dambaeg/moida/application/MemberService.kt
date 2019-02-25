@@ -1,8 +1,6 @@
 package com.dambaeg.moida.application
 
-import com.dambaeg.moida.application.view.MemberCreateView
-import com.dambaeg.moida.application.view.MemberView
-import com.dambaeg.moida.application.view.toMemberView
+import com.dambaeg.moida.application.view.*
 import com.dambaeg.moida.domain.member.Member
 import com.dambaeg.moida.domain.member.MemberRepository
 import javassist.NotFoundException
@@ -11,20 +9,23 @@ import org.springframework.stereotype.Service
 
 @Service
 class MemberService @Autowired constructor(
-        private val memberRepository: MemberRepository
+        private val memberRepository: MemberRepository,
+        private var postService: PostService
 ) {
-
     fun createMember(member: MemberCreateView): MemberView {
         val member = Member(member.name, member.blogLink)
         val persistMember = memberRepository.save(member)
         return toMemberView(persistMember)
     }
 
-    fun findById(memberId: String): Member {
-        return memberRepository.findById(memberId).orElseThrow { NotFoundException("등록된 유저가 없습니다.") }
-    }
+    fun findById(memberId: String) =
+            memberRepository.findById(memberId).orElseThrow { NotFoundException("등록된 유저가 없습니다.") }
 
-    fun findViewById(memberid: String): MemberView {
-        return toMemberView(findById(memberid))
+    fun findViewById(memberId: String) = toMemberView(findById(memberId))
+
+    fun post(memberId: String): PostView {
+        val persistMember = findById(memberId)
+        val post = postService.retrieve(persistMember)
+        return toPostView(persistMember.addPost(post))
     }
 }
