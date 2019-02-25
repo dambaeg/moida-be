@@ -18,7 +18,7 @@ class MemberService @Autowired constructor(
         return toMemberView(persistMember)
     }
 
-    fun findById(memberId: String) =
+    private fun findById(memberId: String) =
             memberRepository.findById(memberId).orElseThrow { NotFoundException("등록된 유저가 없습니다.") }
 
     fun findViewById(memberId: String) = toMemberView(findById(memberId))

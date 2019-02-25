@@ -18,9 +18,6 @@ class ApiMemberController {
     @Autowired
     lateinit var memberService: MemberService
 
-    @Autowired
-    lateinit var postService: PostService
-
     @PostMapping("")
     fun create(@RequestBody member: MemberCreateView): ResponseEntity<MemberView> {
         val memberView = memberService.createMember(member)

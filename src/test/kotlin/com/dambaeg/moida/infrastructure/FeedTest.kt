@@ -1,4 +1,4 @@
-package com.dambaeg.moida.domain.content
+package com.dambaeg.moida.infrastructure
 
 import com.dambaeg.moida.domain.member.Member
 import com.dambaeg.moida.infrastructure.SyndFeed
