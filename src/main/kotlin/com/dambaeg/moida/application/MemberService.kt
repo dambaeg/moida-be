@@ -26,6 +26,6 @@ class MemberService @Autowired constructor(
     fun post(memberId: String): PostView {
         val persistMember = findById(memberId)
         val post = postService.retrieve(persistMember)
-        return toPostView(persistMember.addPost(post))
+        return toPostView(persistMember.posting(post))
     }
 }

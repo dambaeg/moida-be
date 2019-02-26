@@ -1,44 +1,33 @@
 CREATE TABLE member
 (
-  id bigint not null,
+  id VARCHAR(8) not null,
   name VARCHAR(255) NOT NULL,
-  fbLink VARCHAR(255) NOT NULL,
   blogLink VARCHAR(255)	NOT NULL,
   primary key (id)
 );
-CREATE TABLE feed
+CREATE TABLE post
 (
-  id bigint not null,
-  memberId BIGINT NOT NULL,
+  id VARCHAR(8) not null,
+  member_id VARCHAR(8) NOT NULL,
   title VARCHAR(255) NOT NULL,
-  link VARCHAR(255)	NOT NULL,
-  version INT,
+  description TEXT	NOT NULL
   primary key (id)
 );
 
-CREATE TABLE feedHistory
+CREATE TABLE comment
 (
   id bigint not null,
-  createdDate date,
-  contents VARCHAR(255)	NOT NULL,
-  feedId BIGINT NOT NULL,
-  primary key (id)
-);
-
-CREATE TABLE form
-(
-  id bigint not null,
-  memberId BIGINT NOT NULL,
-  createdDate date,
-  updatedDate date,
-  primary key (id)
-);
-
-CREATE TABLE item
-(
-  id varchar(8) not null,
-  formId BIGINT NOT NULL,
+  post_id BIGINT NOT NULL,
   content VARCHAR(255)	NOT NULL,
-  confirm BOOLEAN DEFAULT FALSE,
   primary key (id)
 );
+
+alter table post
+   add constraint fk_post_to_member
+   foreign key (member_id)
+   references member (id);
+
+alter table comment
+   add constraint fk_comment_to_post
+   foreign key (member_id)
+   references member (id);
