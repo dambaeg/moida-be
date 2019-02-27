@@ -47,11 +47,11 @@ dependencies {
 	compile('io.github.microutils:kotlin-logging:1.5.4')
 	compile(group: 'com.rometools', name: 'rome', version: '1.11.0')
 	compile('org.springframework.boot:spring-boot-starter-test')
-	compile('io.rest-assured:rest-assured:3.1.0')
 	compile('org.apache.commons:commons-lang3:3.8.1')
 	runtime('com.h2database:h2')
 	runtime('mysql:mysql-connector-java:5.1.47')
 	runtime('org.flywaydb:flyway-core:5.2.0')
+	testCompile('io.rest-assured:rest-assured:3.3.0')
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
 	implementation "org.jetbrains.kotlin:kotlin-reflect"

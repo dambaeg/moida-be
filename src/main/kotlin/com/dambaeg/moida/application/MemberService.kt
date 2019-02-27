@@ -6,8 +6,10 @@ import com.dambaeg.moida.domain.member.MemberRepository
 import javassist.NotFoundException
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
+import javax.transaction.Transactional
 
 @Service
+@Transactional
 class MemberService @Autowired constructor(
         private val memberRepository: MemberRepository,
         private var postService: PostService
@@ -23,9 +25,10 @@ class MemberService @Autowired constructor(
 
     fun findViewById(memberId: String) = toMemberView(findById(memberId))
 
-    fun post(memberId: String): PostView {
+    fun posting(memberId: String): PostView {
         val persistMember = findById(memberId)
         val post = postService.retrieve(persistMember)
+
         return toPostView(persistMember.posting(post))
     }
 }

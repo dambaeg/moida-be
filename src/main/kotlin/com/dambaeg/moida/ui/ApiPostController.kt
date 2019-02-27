@@ -1,6 +1,7 @@
 package com.dambaeg.moida.ui
 
 import com.dambaeg.moida.application.PostService
+import com.dambaeg.moida.application.view.CommentView
 import com.dambaeg.moida.application.view.POST_BASE_URL
 import com.dambaeg.moida.application.view.PostView
 import org.springframework.beans.factory.annotation.Autowired
@@ -23,5 +24,17 @@ class ApiPostController {
     fun findPost(@PathVariable id: String): ResponseEntity<PostView> {
         val post = postService.findPost(id)
         return ResponseEntity.ok(post)
+    }
+
+    @PostMapping("/{id}/comments")
+    fun addComment(@PathVariable id: String, @RequestBody content: String): ResponseEntity<Unit> {
+        postService.addComment(id, content)
+        return ResponseEntity.ok().build()
+    }
+
+    @GetMapping("/{id}/comments")
+    fun findComments(@PathVariable id: String) : ResponseEntity<List<CommentView>> {
+        val comments = postService.findComments(id)
+        return ResponseEntity.ok(comments)
     }
 }

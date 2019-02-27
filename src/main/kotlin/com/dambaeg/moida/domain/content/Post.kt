@@ -16,8 +16,8 @@ class Post (
         val description: String = ""
 ) : BaseRandomIdEntity() {
 
-    @OneToMany(mappedBy = "post", cascade = [CascadeType.PERSIST], orphanRemoval = true)
+    @OneToMany(mappedBy = "post", cascade = [CascadeType.PERSIST, CascadeType.MERGE], orphanRemoval = true)
     val comments: MutableList<Comment> = mutableListOf()
 
-    fun comment(content: String) = this.comments.add(Comment(content))
+    fun comment(comment: Comment) = this.comments.add(comment)
 }

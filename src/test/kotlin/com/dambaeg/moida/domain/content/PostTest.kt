@@ -28,7 +28,7 @@ class PostTest : BaseTest() {
         val member = Member("bbd", BASE_URL)
         val feed = SyndFeed.get(member)
         val post = feed.toPost(member)
-        post.comment(comment)
+        post.comment(Comment(comment))
 
         softly.assertThat(post.comments.first().content).isEqualTo(comment)
     }

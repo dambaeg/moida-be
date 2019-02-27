@@ -30,9 +30,9 @@ class ApiMemberController {
         return ResponseEntity.ok(member)
     }
 
-    @PostMapping("/{id}/post")
-    fun addPost(@PathVariable id: String): ResponseEntity<PostView> {
-        val latestPostView = memberService.post(id)
+    @PostMapping("/{id}/posting")
+    fun posting(@PathVariable id: String): ResponseEntity<PostView> {
+        val latestPostView = memberService.posting(id)
         return ResponseEntity.created(URI(latestPostView.generateUrl())).body(latestPostView)
     }
 }

@@ -1,5 +1,6 @@
 package com.dambaeg.moida.application.view
 
+import com.dambaeg.moida.domain.content.Comment
 import com.dambaeg.moida.domain.content.Post
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 
@@ -25,3 +26,7 @@ fun toPostView(post: Post) =
                 post.member.name)
 
 fun toPostsView(posts: List<Post>) = posts.map { toPostView(it) }
+
+data class CommentView(var content: String)
+fun toCommentView(comment: Comment) = CommentView(comment.content)
+fun toCommentsView(comments: MutableList<Comment>) = comments.map { toCommentView(it) }
