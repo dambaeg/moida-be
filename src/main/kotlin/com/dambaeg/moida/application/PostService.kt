@@ -1,6 +1,5 @@
 package com.dambaeg.moida.application
 
-import com.dambaeg.moida.application.view.CommentView
 import com.dambaeg.moida.application.view.toCommentsView
 import com.dambaeg.moida.application.view.toPostView
 import com.dambaeg.moida.application.view.toPostsView

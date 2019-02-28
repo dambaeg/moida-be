@@ -19,5 +19,8 @@ class Post (
     @OneToMany(mappedBy = "post", cascade = [CascadeType.PERSIST, CascadeType.MERGE], orphanRemoval = true)
     val comments: MutableList<Comment> = mutableListOf()
 
-    fun comment(comment: Comment) = this.comments.add(comment)
+    fun comment(comment: Comment) {
+        this.comments.add(comment)
+        comment.post = this
+    }
 }
