@@ -11,16 +11,18 @@ import javax.transaction.Transactional
 @Service
 @Transactional
 class MemberService @Autowired constructor(
-        private val memberRepository: MemberRepository,
-        private var postService: PostService
+        private val memberRepository: MemberRepository
 ) {
+    @Autowired
+    private lateinit var postService: PostService
+
     fun createMember(member: MemberCreateView): MemberView {
         val member = Member(member.name, member.blogLink)
         val persistMember = memberRepository.save(member)
         return toMemberView(persistMember)
     }
 
-    private fun findById(memberId: String) =
+    fun findById(memberId: String) =
             memberRepository.findById(memberId).orElseThrow { NotFoundException("등록된 유저가 없습니다.") }
 
     fun findViewById(memberId: String) = toMemberView(findById(memberId))
