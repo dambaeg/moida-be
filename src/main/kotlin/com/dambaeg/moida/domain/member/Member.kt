@@ -6,8 +6,12 @@ import javax.persistence.*
 
 @Entity
 data class Member(
-        val name: String = "",
-        val blogLink: String = ""
+        var name: String = "",
+        var blogLink: String = "",
+
+        @OneToOne
+        var party: Party = Party()
+
 ) : BaseRandomIdEntity() {
     @OneToMany(mappedBy = "member", cascade = [CascadeType.PERSIST], orphanRemoval = true)
     val posts: MutableList<Post> = mutableListOf()
@@ -16,4 +20,6 @@ data class Member(
         this.posts.add(post)
         return posts.last()
     }
+
+    fun getGroupName() = party.group.name
 }
