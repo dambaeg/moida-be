@@ -4,6 +4,7 @@ import com.dambaeg.moida.domain.BaseEntity
 import javax.persistence.*
 
 @Entity
+@Table(name = "TB_COMMENT")
 class Comment(
         @Column(columnDefinition = "TEXT")
         val content: String,

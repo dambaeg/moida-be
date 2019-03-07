@@ -1,7 +1,6 @@
 package com.dambaeg.moida.application
 
 import com.dambaeg.moida.application.view.GroupCreateView
-import com.dambaeg.moida.application.view.GroupView
 import com.dambaeg.moida.application.view.toGroupView
 import com.dambaeg.moida.domain.member.Group
 import com.dambaeg.moida.domain.member.GroupRepository
@@ -18,10 +17,7 @@ class GroupService @Autowired constructor(
 
     fun find(name: String)  = groupRepository.findByName(name)
 
-    fun create(view: GroupCreateView) :GroupView {
-        val group = save(view.name)
-        return toGroupView(group)
-    }
+    fun create(view: GroupCreateView)= toGroupView(save(view.name))
 
     fun findViewById(id: String) = toGroupView(groupRepository.findById(id).get())
 }

@@ -5,6 +5,7 @@ import com.dambaeg.moida.domain.member.Member
 import javax.persistence.*
 
 @Entity
+@Table(name = "TB_POST")
 class Post (
         @ManyToOne
         @JoinColumn(foreignKey = ForeignKey(name = "fk_post_to_member"))

@@ -6,6 +6,7 @@ import com.dambaeg.moida.domain.member.Member
 import javax.persistence.*
 
 @Entity
+@Table(name = "TB_EVALUATION")
 class Evaluation(
         @OneToOne
         val member: Member,

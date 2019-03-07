@@ -5,6 +5,7 @@ import com.dambaeg.moida.domain.content.Post
 import javax.persistence.*
 
 @Entity
+@Table(name = "TB_MEMBER")
 data class Member(
         var name: String = "",
         var blogLink: String = "",

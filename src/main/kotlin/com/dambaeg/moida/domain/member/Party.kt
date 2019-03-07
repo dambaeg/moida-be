@@ -1,13 +1,11 @@
 package com.dambaeg.moida.domain.member
 
 import com.dambaeg.moida.domain.BaseRandomIdEntity
-import javax.persistence.Entity
-import javax.persistence.ForeignKey
-import javax.persistence.JoinColumn
-import javax.persistence.ManyToOne
+import javax.persistence.*
 
 @Entity
-class Party(
+@Table(name = "TB_PARTY")
+data class Party(
         var name: String = "",
 
         @ManyToOne

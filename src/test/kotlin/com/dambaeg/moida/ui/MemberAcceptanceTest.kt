@@ -17,8 +17,8 @@ class MemberAcceptanceTest : WebBaseTest() {
     val partyView = PartyCreateView("백엔드", groupView.name)
     val memberView = MemberCreateView("bbd", partyView.name, BASE_URL)
 
-    @Before
-    fun setUp() {
+    @Test
+    fun `멤버 등록`() {
         givenAnonymous().with()
                 .body(groupView)
                 .post(GROUP_BASE_URL)
@@ -26,10 +26,6 @@ class MemberAcceptanceTest : WebBaseTest() {
         givenAnonymous().with()
                 .body(partyView)
                 .post(PARTY_BASE_URL)
-    }
-
-    @Test
-    fun `멤버 등록`() {
         val memberView = givenAnonymous().with()
                 .body(memberView)
                 .post(MEMBER_BASE_URL)
