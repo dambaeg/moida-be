@@ -28,5 +28,6 @@ fun toMemberView(member: Member): MemberView {
 
 data class MemberCreateView(
         val name: String,
+        val partyName: String,
         val blogLink: String
 )

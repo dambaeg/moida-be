@@ -10,7 +10,7 @@ data class Member(
         var blogLink: String = "",
 
         @OneToOne
-        var party: Party = Party()
+        var party: Party
 
 ) : BaseRandomIdEntity() {
     @OneToMany(mappedBy = "member", cascade = [CascadeType.PERSIST], orphanRemoval = true)

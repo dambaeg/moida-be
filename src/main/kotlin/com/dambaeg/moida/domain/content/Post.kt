@@ -8,7 +8,7 @@ import javax.persistence.*
 class Post (
         @ManyToOne
         @JoinColumn(foreignKey = ForeignKey(name = "fk_post_to_member"))
-        val member: Member = Member(),
+        val member: Member,
 
         val title: String = "",
 
@@ -19,8 +19,5 @@ class Post (
     @OneToMany(mappedBy = "post", cascade = [CascadeType.PERSIST, CascadeType.MERGE], orphanRemoval = true)
     val comments: MutableList<Comment> = mutableListOf()
 
-    fun comment(comment: Comment) {
-        this.comments.add(comment)
-        comment.post = this
-    }
+    fun comment(content: String) = this.comments.add(Comment(content, this))
 }

@@ -8,11 +8,11 @@ import javax.persistence.*
 @Entity
 class Evaluation(
         @OneToOne
-        val member: Member = Member(),
+        val member: Member,
 
         @ManyToOne
         @JoinColumn(foreignKey = ForeignKey(name = "fk_evaluation_to_post"))
-        val post: Post = Post(),
+        val post: Post,
 
         val score1: Int = 0,
         val score2: Int = 0,

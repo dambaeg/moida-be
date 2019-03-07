@@ -6,13 +6,27 @@ import io.restassured.RestAssured
 import io.restassured.http.ContentType
 import io.restassured.mapper.TypeRef
 import io.restassured.specification.RequestSpecification
+import org.junit.Before
 import org.junit.Test
 import org.springframework.http.HttpStatus
 
 class MemberAcceptanceTest : WebBaseTest() {
 
     private val BASE_URL = "https://brainbackdoor.tistory.com"
-    val memberView = MemberCreateView("bbd", BASE_URL)
+    val groupView = GroupCreateView("글또")
+    val partyView = PartyCreateView("백엔드", groupView.name)
+    val memberView = MemberCreateView("bbd", partyView.name, BASE_URL)
+
+    @Before
+    fun setUp() {
+        givenAnonymous().with()
+                .body(groupView)
+                .post(GROUP_BASE_URL)
+
+        givenAnonymous().with()
+                .body(partyView)
+                .post(PARTY_BASE_URL)
+    }
 
     @Test
     fun `멤버 등록`() {

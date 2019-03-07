@@ -1,5 +1,6 @@
 package com.dambaeg.moida.domain.member
 
+import com.dambaeg.moida.domain.BaseRandomIdEntity
 import javax.persistence.CascadeType
 import javax.persistence.Entity
 import javax.persistence.OneToMany
@@ -11,4 +12,4 @@ class Group(
 
         @OneToMany(mappedBy = "group", cascade = [CascadeType.PERSIST], orphanRemoval = true)
         var party: MutableList<Party> = mutableListOf()
-)
+) : BaseRandomIdEntity()

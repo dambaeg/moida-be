@@ -1,7 +1,6 @@
 package com.dambaeg.moida.ui
 
 import com.dambaeg.moida.application.MemberService
-import com.dambaeg.moida.application.PostService
 import com.dambaeg.moida.application.view.MEMBER_BASE_URL
 import com.dambaeg.moida.application.view.MemberCreateView
 import com.dambaeg.moida.application.view.MemberView

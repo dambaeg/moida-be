@@ -1,5 +1,6 @@
 package com.dambaeg.moida.domain.member
 
+import com.dambaeg.moida.domain.BaseRandomIdEntity
 import javax.persistence.Entity
 import javax.persistence.ForeignKey
 import javax.persistence.JoinColumn
@@ -11,5 +12,5 @@ class Party(
 
         @ManyToOne
         @JoinColumn(foreignKey = ForeignKey(name = "fk_party_to_group"))
-        var group: Group = Group()
-)
+        var group: Group
+) : BaseRandomIdEntity()

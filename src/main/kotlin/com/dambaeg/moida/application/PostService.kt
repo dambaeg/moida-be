@@ -1,7 +1,6 @@
 package com.dambaeg.moida.application
 
 import com.dambaeg.moida.application.view.*
-import com.dambaeg.moida.domain.content.Comment
 import com.dambaeg.moida.domain.content.Post
 import com.dambaeg.moida.domain.content.PostRepository
 import com.dambaeg.moida.domain.evaluation.Evaluation
@@ -32,9 +31,9 @@ class PostService @Autowired constructor(
 
     private fun findById(id: String) = postRepository.findById(id).get()
 
-    fun addComment(id: String, comment: String) {
+    fun addComment(id: String, content: String) {
         val post = findById(id)
-        post.comment(Comment(comment))
+        post.comment(content)
     }
 
     fun findComments(id: String) = toCommentsView(findById(id).comments)
