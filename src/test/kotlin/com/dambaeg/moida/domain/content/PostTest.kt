@@ -20,6 +20,7 @@ class PostTest : BaseTest() {
         val feed = SyndFeed.get(member)
         val post = feed.toPost(member)
         logger.debug { post.title }
+        logger.debug { post.uri }
         softly.assertThat(post.description).isNotNull
     }
 

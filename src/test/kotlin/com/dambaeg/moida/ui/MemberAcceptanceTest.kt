@@ -39,6 +39,14 @@ class MemberAcceptanceTest : WebBaseTest() {
     @Test
     fun `피드가 게시글로 등록`() {
         // 회원을 등록한다.
+        givenAnonymous().with()
+                .body(groupView)
+                .post(GROUP_BASE_URL)
+
+        givenAnonymous().with()
+                .body(partyView)
+                .post(PARTY_BASE_URL)
+
         val memberView = givenAnonymous().with()
                 .body(memberView)
                 .post("$MEMBER_BASE_URL")
