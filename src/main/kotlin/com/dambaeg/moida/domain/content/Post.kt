@@ -14,7 +14,9 @@ class Post (
         val title: String = "",
 
         @Column(columnDefinition = "TEXT")
-        val description: String = ""
+        val description: String = "",
+
+        val uri: String = ""
 ) : BaseRandomIdEntity() {
 
     @OneToMany(mappedBy = "post", cascade = [CascadeType.PERSIST, CascadeType.MERGE], orphanRemoval = true)

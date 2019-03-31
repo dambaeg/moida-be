@@ -28,5 +28,7 @@ fun toPostView(post: Post) =
 fun toPostsView(posts: List<Post>) = posts.map { toPostView(it) }
 
 data class CommentView(var content: String)
+
 fun toCommentView(comment: Comment) = CommentView(comment.content)
+
 fun toCommentsView(comments: MutableList<Comment>) = comments.map { toCommentView(it) }

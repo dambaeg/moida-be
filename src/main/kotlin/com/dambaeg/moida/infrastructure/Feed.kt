@@ -9,15 +9,17 @@ import java.net.URL
 object SyndFeed : Feed {
     var title: String = ""
     var description: String = ""
+    var uri: String = ""
 
     override fun get(member: Member): Feed {
         val feed = SyndFeedInput().build(XmlReader(URL("${member.blogLink}/rss")))
         this.title = feed.entries[0].title
         this.description = feed.entries[0].description.value
+        this.uri = feed.entries[0].uri
         return this
     }
 
-   override fun toPost(member: Member) = Post(member, title, description)
+   override fun toPost(member: Member) = Post(member, title, description, uri)
 }
 
 interface Feed {
